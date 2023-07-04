@@ -186,92 +186,104 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less">
+
 .fly-input {
-  display: inline-flex;
-  position: relative;
+    --fly-input-color: #434054;
+    --fly-input-border-color: #A19FA9;
+    --fly-input-shadow-color: #A19FA9;
 
-  align-items: center;
-  max-width: 100%;
-  width: 100%;
-  overflow: hidden;
+    display: inline-flex;
+    position: relative;
 
-  background: #fff;
-  border: 1px solid #A19FA9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 0px 0px #A19FA9 inset;
-  background-origin: border-box;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
 
-.fly-input input {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  padding: 10px 17px;
-  background: transparent;
-  color: #434054;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-}
+    background: #fff;
+    border: 1px solid var(--fly-input-border-color);
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 0px var(--fly-input-shadow-color) inset;
+    background-origin: border-box;
+    transition: border-color .25s ease, box-shadow .25s ease;
 
-.fly-input input::placeholder {
-  color: #A19FA9;
-}
+    input, textarea {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        padding: 10px 17px;
+        background: transparent;
+        color: var(--fly-input-color);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
 
-.fly-input--disabled {
-  cursor: default;
-  color: #D0CFD4;
-  border-color: #E8E8EA;
-}
+        &::placeholder {
+            color: #A19FA9;
+        }
+    }
 
-.fly-input:hover:not(.fly-input--disabled):not(.fly-input--invalid),
-.fly-input--focused:not(.fly-input--invalid) {
-  border-color: #C48EF9;
-  box-shadow: 0px 0px 0px 2px #C48EF9 inset;
-}
+    textarea {
+        // allow only vertical resize by default
+        resize: vertical;
+    }
 
-.fly-input--invalid:not(--focused) {
-  color: #FF6666;
-  border-color: #FF6666;
-}
+    &--disabled {
+        cursor: default;
+        --fly-input-color: #D0CFD4;
+        --fly-input-border-color: #E8E8EA;
+    }
 
-.fly-input--invalid:hover:not(.fly-input--disabled),
-.fly-input--invalid.fly-input--focused {
-  color: #FF6666;
-  border-color: #FF6666;
-  box-shadow: 0px 0px 0px 2px #FF6666 inset;
-}
+    &:hover:not(&--disabled):not(&--invalid), &--focused:not(&--invalid) {
+        --fly-input-border-color: #C48EF9;
+        --fly-input-shadow-color: #C48EF9;
+        box-shadow: 0px 0px 0px 2px var(--fly-input-shadow-color) inset;
+    }
 
-.fly-input__sub-content {
-  display: flex;
-  align-items: center;
-}
+    &--invalid:not(&--focused) {
+        --fly-input-color: #FF6666;
+        --fly-input-border-color: #FF6666;
+    }
 
-.fly-input__sub-content .fly-input--left {
-  left: 0;
-  padding-left: 16px;
-}
+    &--invalid:hover:not(&--disabled), &--invalid&--focused {
+        --fly-input-color: #FF6666;
+        --fly-input-border-color: #FF6666;
+        --fly-input-shadow-color: #FF6666;
+        box-shadow: 0px 0px 0px 2px var(--fly-input-shadow-color) inset;
+    }
 
-.fly-input__sub-content .fly-input--right {
-  right: 0;
-  padding-right: 16px;
-}
+    &__sub-content {
+        display: flex;
+        align-items: center;
 
-.fly-input--large input,
-textarea {
-  padding: 20px 24px;
-}
+        &--left {
+            left: 0;
+            padding-left: 16px;
+        }
 
-.fly-input--rounded input,
-textarea {
-  border-radius: 24px;
-}
+        &--right {
+            right: 0;
+            padding-right: 16px;
+        }
+    }
 
-.fly-input--rounded.fly-input--large input,
-textarea {
-  border-radius: 50px;
+    &--large {
+        input, textarea {
+            padding: 20px 24px;
+        }
+    }
+
+    &--rounded {
+        input, textarea {
+            border-radius: 24px;
+        }
+    }
+
+    &--rounded&--large{
+        input, textarea {
+            border-radius: 50px;
+        }
+    }
 }
 </style>
