@@ -232,6 +232,7 @@ export default defineComponent({
     &--disabled {
         cursor: default;
         --fly-input-color: #D0CFD4;
+        -webkit-text-fill-color: var(--fly-input-color);
         --fly-input-border-color: #E8E8EA;
     }
 
